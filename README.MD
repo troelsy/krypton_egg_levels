@@ -6,7 +6,7 @@ Krypton Egg is a classic DOS-era “breakout/Arkanoid-like” game: you clear br
 
 ![Krypton Egg banner](banner.png)
 
-The game comes in several different versions. Based on what I've found, there are versions 1.1, 2.1, 3.3 and 4.0. Versions 1.1, 2.1 and 3.3 have 60 levels, while version 4.0 includes 100 levels.
+The game comes in several different versions. Based on what I've found, there are version 1.1, 2.1, 3.3 and 4.0. Version 1.1, 2.1 and 3.3 have 60 levels, while version 4.0 includes 100 levels.
 
 | Version | Year | Source | Link |
 |---------|------|--------|------|
