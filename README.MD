@@ -1,25 +1,26 @@
-# Krypton Egg The Ultimate Breakout (1994/1996) Game Code Generator
+# Krypton Egg The Ultimate Breakout (1994-1996) Game Code Generator
 
-A small utility for generating **Krypton Egg (1994/1996)** resume codes.
+A small utility for generating **Krypton Egg (1994-1996)** resume codes.
 
 Krypton Egg is a classic DOS-era “breakout/Arkanoid-like” game: you clear bricks, collect power-ups, and progress through themed stages. Like many games of the time, it uses short “stage codes” so you have checkpoints or can resume playing from the level.
 
 ![Krypton Egg banner](banner.png)
 
-The game comes in several different versions. Based on what I've found, there are versions 1.1, 2.1, and 4.0. Versions 1.1 and 2.1 each have 60 levels, while version 4.0 includes 100 levels.
+The game comes in several different versions. Based on what I've found, there are versions 1.1, 2.1, 3.3 and 4.0. Versions 1.1, 2.1 and 3.3 have 60 levels, while version 4.0 includes 100 levels.
 
-| Version | Source | Link |
-|---------|--------|------|
-| 1.1 | Classic Reload | [Play Online](https://classicreload.com/krypton-egg.html) |
-| 2.1 | Archive.org | [Download](https://archive.org/download/exov5_2/eXo/eXoDOS/) |
-| 4.0 | Developer Site | [Download](http://chiliconvalley.online.fr/games/keuk/start.htm) |
-| 4.0 | Archive.org | [Download](https://archive.org/details/c2v-game-suite/00_Front.jpg) |
+| Version | Year | Source | Link |
+|---------|------|--------|------|
+| 1.1     | 1994 | Classic Reload | [Play Online](https://classicreload.com/krypton-egg.html) |
+| 2.1     | 1994 | Archive.org | [Download](https://archive.org/download/exov5_2/eXo/eXoDOS/) |
+| 3.3     | 1995 | Archive.org | [Download](https://archive.org/download/total-dos-collection-k) |
+| 4.0     | 1996 | Developer Site | [Download](http://chiliconvalley.online.fr/games/keuk/start.htm) |
+| 4.0     | 1996 | Archive.org | [Download](https://archive.org/details/c2v-game-suite/00_Front.jpg) |
 
 ## How Krypton Egg stage codes work
 
 For every 10 levels you complete in Krypton Egg, you get a 4-character code (4 hexadecimal digits: `0-9` and `A-F`). That code encodes the stage you reached (`11`, `21`, `31`, …), and how many lives you will start with, so you can resume the game from that point.
 
-I found this [partial code table for version 2.1](http://bmxfrance.free.fr/cedr/krypton.html), which I used to reverse engineering the codes for version 2.1
+I found this [partial code table for version 2.1/3.3](http://bmxfrance.free.fr/cedr/krypton.html), which I used to reverse engineering the codes for version 2.1/3.3
 
 For 4.0 version, I used [**DOSBox-X**](https://dosbox-x.com) to save and restore the program state and systematically complete levels with controlled life counts, producing a truth table for testing:
 
@@ -31,7 +32,7 @@ The stage codes are **four hexadecimal digits** and encode level + lives in the 
 |-----------:|-----------:|------:|--------------:|---------------:|
 
 - **Checksum A** and **Checksum B** are a bit obscure — see the source code for how they're derived.
-- **Level** is stored as an unsigned integer (**3 bits** for versions 2.1, **4 bits** for version 4.0) with no encryption.
+- **Level** is stored as an unsigned integer (**3 bits** for versions 2.1/3.3, **4 bits** for version 4.0) with no encryption.
 - **Lives** are encoded with an XOR cipher that is static per game version.
 - **Lives checksum** is also XOR encoded, but varies by game version and each stage (`11`, `21`, `31`, …).
 
@@ -60,7 +61,7 @@ If you did it right, you'll see this:
 
 
 <details>
-  <summary><b>Expand to see full table.</b> Show code table for <b>version 2.1</b></summary>
+  <summary><b>Expand to see full table.</b> Show code table for <b>version 2.1/3.3</b></summary>
 
 | Lives | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
 |-------|-------|-------|-------|-------|-------|
