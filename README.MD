@@ -6,11 +6,7 @@ Krypton Egg is a classic DOS-era “breakout/Arkanoid-like” game: you clear br
 
 ![Krypton Egg banner](banner.png)
 
-You can get the shareware version from:
-
-- Developer site: `http://chiliconvalley.online.fr/games/keuk/start.htm`
-- Archive.org: `https://archive.org/details/c2v-game-suite/00_Front.jpg`
-
+You can get the **shareware version** from [Developer site](http://chiliconvalley.online.fr/games/keuk/start.htm) or [Archive.org](https://archive.org/details/c2v-game-suite/00_Front.jpg)
 
 ## How Krypton Egg stage codes work
 
