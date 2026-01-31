@@ -2,7 +2,7 @@
 
 A small utility for generating **Krypton Egg (1996)** resume codes.
 
-Krypton Egg is a classic DOS-era “breakout/Arkanoid-like” game: you clear bricks, collect power-ups, and progress through themed stages with increasingly nasty patterns and enemies. Like many games of the time, it uses short “stage codes” so you can resume later without saving.
+Krypton Egg is a classic DOS-era “breakout/Arkanoid-like” game: you clear bricks, collect power-ups, and progress through themed stages. Like many games of the time, it uses short “stage codes” so you have checkpoints or can resume playing from the level.
 
 ![Krypton Egg banner](banner.png)
 
@@ -22,7 +22,7 @@ The stage codes are **four hexadecimal digits** and encode level + lives in the 
 |-----------:|-----------:|------:|--------------:|---------------:|
 
 - **Checksum A** and **Checksum B** are a bit obscure — see the source code for how they’re derived.
-- **Level** is stored as an unsigned integer (**3 bits** for 50/60-level versions, **4 bits** for the 100-level version) with no encryption.
+- **Level** is stored as an unsigned integer (**3 bits** for 60-level versions, **4 bits** for the 100-level version) with no encryption.
 - **Lives** are encoded with an XOR cipher that is static per game version.
 - **Lives checksum** is also XOR encoded, but varies by game version and each stage (`11`, `21`, `31`, …).
 
@@ -46,7 +46,7 @@ If you did it right, you'll see this:
 
 ![Correct code](success.png)
 
-### Table of codes for version with 50/60 levels
+### Table of codes for version with 60 levels
 
 
 | Lives | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
@@ -55,7 +55,7 @@ If you did it right, you'll see this:
 
 
 <details>
-  <summary><b>Expand to see full table.</b> Show code table for version with <b>50/60 levels</b></summary>
+  <summary><b>Expand to see full table.</b> Show code table for version with <b>60 levels</b></summary>
 
 | Lives | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
 |-------|-------|-------|-------|-------|-------|
