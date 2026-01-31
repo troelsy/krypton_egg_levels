@@ -8,20 +8,22 @@ Krypton Egg is a classic DOS-era “breakout/Arkanoid-like” game: you clear br
 
 The game comes in several different versions. Based on what I've found, there are versions 1.1, 2.1, and 4.0. Versions 1.1 and 2.1 each have 60 levels, while version 4.0 includes 100 levels.
 
-[Version 1.1 from Classic Reload](https://classicreload.com/krypton-egg.html)
-[Version 2.1 from Archive.org](https://archive.org/download/exov5_2/eXo/eXoDOS/)
-[Version 4.0 from Developer site](http://chiliconvalley.online.fr/games/keuk/start.htm)
-[Version 4.0 from Archive.org](https://archive.org/details/c2v-game-suite/00_Front.jpg)
+| Version | Source | Link |
+|---------|--------|------|
+| 1.1 | Classic Reload | [Play Online](https://classicreload.com/krypton-egg.html) |
+| 2.1 | Archive.org | [Download](https://archive.org/download/exov5_2/eXo/eXoDOS/) |
+| 4.0 | Developer Site | [Download](http://chiliconvalley.online.fr/games/keuk/start.htm) |
+| 4.0 | Archive.org | [Download](https://archive.org/details/c2v-game-suite/00_Front.jpg) |
 
 ## How Krypton Egg stage codes work
 
 For every 10 levels you complete in Krypton Egg, you get a 4-character code (4 hexadecimal digits: `0-9` and `A-F`). That code encodes the stage you reached (`11`, `21`, `31`, …), and how many lives you will start with, so you can resume the game from that point.
 
-I found this partial [code table for version 2.1](http://bmxfrance.free.fr/cedr/krypton.html), which I used to reverse engineering the codes for version 2.1
+I found this [partial code table for version 2.1](http://bmxfrance.free.fr/cedr/krypton.html), which I used to reverse engineering the codes for version 2.1
 
 For 4.0 version, I used [**DOSBox-X**](https://dosbox-x.com) to save and restore the program state and systematically complete levels with controlled life counts, producing a truth table for testing:
 
-I didn't reverse-engineer version 1.1, but the codes differ across versions. So, to obtain the codes for this version, you'd need to confirm they're generated in the same way and then extract the XOR ciphers.
+I didn't reverse engineer version 1.1, but the codes differ across versions. So, to obtain the codes for this version, you'd need to confirm they're generated in the same way and then extract the XOR ciphers.
 
 The stage codes are **four hexadecimal digits** and encode level + lives in the same overall concept for all versions:
 
@@ -50,7 +52,7 @@ If you did it right, you'll see this:
 
 ![Correct code](success.png)
 
-### Table of codes for version with 60 levels
+### Table of codes
 
 | Lives | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
 |-------|-------|-------|-------|-------|-------|
@@ -58,7 +60,7 @@ If you did it right, you'll see this:
 
 
 <details>
-  <summary><b>Expand to see full table.</b> Show code table for version with <b>60 levels</b></summary>
+  <summary><b>Expand to see full table.</b> Show code table for <b>version 2.1</b></summary>
 
 | Lives | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
 |-------|-------|-------|-------|-------|-------|
@@ -134,7 +136,7 @@ If you did it right, you'll see this:
 | 10 | ED15 | E11B | A519 | B91F | FD1D | F113 | B511 | 8917 | CD15 |
 
 <details>
-  <summary><b>Expand to see full table.</b> Show code table for version with <b>100 levels</b></summary>
+  <summary><b>Expand to see full table.</b> Show code table for <b>version 4.0</b></summary>
 
 | Lives | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 | Level 6 | Level 7 | Level 8 | Level 9 |
 |-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
