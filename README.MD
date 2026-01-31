@@ -1,39 +1,43 @@
-# Krypton Egg (1996) Game Code Generator
+# Krypton Egg The Ultimate Breakout (1994/1996) Game Code Generator
 
-A small utility for generating **Krypton Egg (1996)** resume codes.
+A small utility for generating **Krypton Egg (1994/1996)** resume codes.
 
 Krypton Egg is a classic DOS-era “breakout/Arkanoid-like” game: you clear bricks, collect power-ups, and progress through themed stages. Like many games of the time, it uses short “stage codes” so you have checkpoints or can resume playing from the level.
 
 ![Krypton Egg banner](banner.png)
 
-You can get the **shareware version** from [Developer site](http://chiliconvalley.online.fr/games/keuk/start.htm) or [Archive.org](https://archive.org/details/c2v-game-suite/00_Front.jpg)
+The game comes in several different versions. Based on what I've found, there are versions 1.1, 2.1, and 4.0. Versions 1.1 and 2.1 each have 60 levels, while version 4.0 includes 100 levels.
+
+[Version 1.1 from Classic Reload](https://classicreload.com/krypton-egg.html)
+[Version 2.1 from Archive.org](https://archive.org/download/exov5_2/eXo/eXoDOS/)
+[Version 4.0 from Developer site](http://chiliconvalley.online.fr/games/keuk/start.htm)
+[Version 4.0 from Archive.org](https://archive.org/details/c2v-game-suite/00_Front.jpg)
 
 ## How Krypton Egg stage codes work
 
 For every 10 levels you complete in Krypton Egg, you get a 4-character code (4 hexadecimal digits: `0-9` and `A-F`). That code encodes the stage you reached (`11`, `21`, `31`, …), and how many lives you will start with, so you can resume the game from that point.
 
-I don’t have access to the 50-level or 60-level executable, so I reverse engineered the format using the code table here (partial code table 60-level version): [Code Table](http://bmxfrance.free.fr/cedr/krypton.html)
+I found this partial [code table for version 2.1](http://bmxfrance.free.fr/cedr/krypton.html), which I used to reverse engineering the codes for version 2.1
 
-For the newer 100-level version, I used [**DOSBox-X**](https://dosbox-x.com) to save and restore the program state and systematically complete levels with controlled life counts, producing a truth table for testing:
+For 4.0 version, I used [**DOSBox-X**](https://dosbox-x.com) to save and restore the program state and systematically complete levels with controlled life counts, producing a truth table for testing:
+
+I didn't reverse-engineer version 1.1, but the codes differ across versions. So, to obtain the codes for this version, you'd need to confirm they're generated in the same way and then extract the XOR ciphers.
 
 The stage codes are **four hexadecimal digits** and encode level + lives in the same overall concept for all versions:
 
 | Checksum A | Checksum B | Level | Lives encoded | Lives checksum |
 |-----------:|-----------:|------:|--------------:|---------------:|
 
-- **Checksum A** and **Checksum B** are a bit obscure — see the source code for how they’re derived.
-- **Level** is stored as an unsigned integer (**3 bits** for 60-level versions, **4 bits** for the 100-level version) with no encryption.
+- **Checksum A** and **Checksum B** are a bit obscure — see the source code for how they're derived.
+- **Level** is stored as an unsigned integer (**3 bits** for versions 2.1, **4 bits** for version 4.0) with no encryption.
 - **Lives** are encoded with an XOR cipher that is static per game version.
 - **Lives checksum** is also XOR encoded, but varies by game version and each stage (`11`, `21`, `31`, …).
 
 Because the live checksums XOR ciphers are only **4 bits**, they can be bruteforced fairly easily.
 
-
 ## Using a stage code in the game
 
 For convenience, this repo includes a full table of codes, but you can also run the algorithms to generate codes yourself.
-
-There are multiple game variants with either 50, 60, or 100 levels. The code tables are different for each version. I only had access to a small number of codes for the 50-level version, so I couldn't verify the correctness of the algorithm without the game. The 60-level version and 100-level version can be found below.
 
 You use the code by:
 1. Launch the game
@@ -47,7 +51,6 @@ If you did it right, you'll see this:
 ![Correct code](success.png)
 
 ### Table of codes for version with 60 levels
-
 
 | Lives | Level 1 | Level 2 | Level 3 | Level 4 | Level 5 |
 |-------|-------|-------|-------|-------|-------|
@@ -201,8 +204,6 @@ If you did it right, you'll see this:
 | 63 | 6E4F | 6241 | 2643 | 3A45 | 7E47 | 7249 | 364B | A4D | 4E4F |
 
 </details>
-
-You may notice that I write 8B5A for level 11 with 21 lives, while [Cédric Delecluse](http://bmxfrance.free.fr/cedr/krypton.html) writes 2B3B, but as this is the only discrepancy, I assume it is an error in his table.
 
 ![Krypton Egg Level 91](level91.png)
 
